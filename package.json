@@ -1,0 +1,86 @@
+{
+  "name": "@thecaffeinateddev/litel",
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://github.com/iammary/litel",
+  "author": "Jes Anub",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "prepare": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "wc": "vitest -w --coverage"
+  },
+  "dependencies": {
+    "lit": "^2.7.6"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./dist/styles/*": "./dist/styles/*",
+    "./dist/components/*": "./dist/components/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "web components",
+    "custom elements",
+    "components",
+    "shoelace",
+    "lit",
+    "storybook"
+  ],
+  "jsdelivr": "./dist/markupAutoloader.js",
+  "devDependencies": {
+    "@open-wc/testing": "^3.2.2",
+    "@storybook/addon-essentials": "^7.5.2",
+    "@storybook/addon-links": "^7.5.2",
+    "@storybook/blocks": "^7.5.2",
+    "@storybook/builder-vite": "^7.5.2",
+    "@storybook/web-components": "^7.5.2",
+    "@storybook/web-components-vite": "^7.5.2",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "@vitest/coverage-v8": "^0.34.6",
+    "@vitest/ui": "^0.34.6",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-lit": "^1.10.1",
+    "eslint-plugin-lit-a11y": "^4.1.1",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-sonarjs": "^0.22.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-plugin-wc": "^2.0.4",
+    "happy-dom": "^12.10.3",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.2",
+    "prettier": "3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.5.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.5",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^0.34.6"
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx}": [
+      "eslint --fix"
+    ],
+    "*.{ts,js,css,yml,html,mdx}": [
+      "prettier --write"
+    ]
+  }
+}
