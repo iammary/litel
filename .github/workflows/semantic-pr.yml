@@ -7,7 +7,7 @@ on:
 jobs:
   main:
     name: Validate Semantic Release PR title
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v4
         env:
