@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+env:
+  PR_DIRECTORY: v${{ github.event.number }}
 
 jobs:
   publish-gh-pages:
@@ -26,7 +28,7 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: storybook-static # The folder the action should deploy.
-          target-folder: ${{ github.event.number }}
+          target-folder: ${{ github.event_name == 'pull_request' && env.PR_DIRECTORY ||  github.event.number }}
       - if: github.event_name == 'pull_request'
         uses: tzkhan/pr-update-action@v2
         with:
@@ -37,7 +39,8 @@ jobs:
             ---
 
             **Do not modify anything below the line**
-            [Link to the preview site for the branch ${{ github.head_ref }}](https://www.jes.ph/litel/${{ github.event
-            .number }})
+            [Link to the preview site for the branch ${{ github.head_ref }}](https://www.jes.ph/litel/${{ env
+            .PR_DIRECTORY
+            }})
           body-update-action: "suffix"
           body-uppercase-head-match: false
