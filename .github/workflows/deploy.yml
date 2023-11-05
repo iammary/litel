@@ -1,0 +1,42 @@
+name: Deploy to GitHub pages
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+
+jobs:
+  publish-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Build documents
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm ci -f
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run build-storybook
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: storybook-static # The folder the action should deploy.
+          target-folder: ${{ github.head_ref }}
+      - if: github.event_name == 'pull_request'
+        uses: tzkhan/pr-update-action@v2
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          head-branch-regex: '.*'
+          body-template: |
+
+            ---
+
+            **Do not modify anything below the line**
+            [Link to the preview website for the branch ${{ github.head_ref }}](https://jes.ph/${{ github.head_ref }})
+          body-update-action: 'suffix'
+          body-uppercase-head-match: false
