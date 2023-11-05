@@ -37,6 +37,7 @@ jobs:
             ---
 
             **Do not modify anything below the line**
-            [Link to the preview website for the branch ${{ github.head_ref }}](https://www.jes.ph/litel/${{ github.event.number }})
+            [Link to the preview site for the branch ${{ github.head_ref }}](https://www.jes.ph/litel/${{ github.event
+            .number }})
           body-update-action: "suffix"
           body-uppercase-head-match: false
